@@ -59,6 +59,7 @@
       <DependentUpon>AnaBayiPanelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Baglanti.cs" />
+    <Compile Include="Model\Class1.cs" />
     <Compile Include="Model\Kategori.cs" />
     <Compile Include="Model\Urun.cs" />
     <Compile Include="Program.cs" />
