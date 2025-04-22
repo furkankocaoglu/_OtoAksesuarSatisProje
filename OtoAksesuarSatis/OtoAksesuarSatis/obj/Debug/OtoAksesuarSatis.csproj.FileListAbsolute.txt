@@ -1,0 +1,11 @@
+C:\Users\user\source\repos\OtoAksesuarSatis\OtoAksesuarSatis\bin\Debug\OtoAksesuarSatis.exe.config
+C:\Users\user\source\repos\OtoAksesuarSatis\OtoAksesuarSatis\bin\Debug\OtoAksesuarSatis.exe
+C:\Users\user\source\repos\OtoAksesuarSatis\OtoAksesuarSatis\bin\Debug\OtoAksesuarSatis.pdb
+C:\Users\user\source\repos\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.AnaBayiGirisEkrani.resources
+C:\Users\user\source\repos\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.AnaBayiPanelForm.resources
+C:\Users\user\source\repos\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.Properties.Resources.resources
+C:\Users\user\source\repos\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.csproj.GenerateResource.cache
+C:\Users\user\source\repos\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.exe
+C:\Users\user\source\repos\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.pdb
