@@ -59,7 +59,6 @@
       <DependentUpon>AnaBayiPanelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Baglanti.cs" />
-    <Compile Include="Model\Class1.cs" />
     <Compile Include="Model\Kategori.cs" />
     <Compile Include="Model\Urun.cs" />
     <Compile Include="Program.cs" />
@@ -86,6 +85,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UrunIslemleri.resx">
+      <DependentUpon>UrunIslemleri.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -107,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tema2-04292016030547-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Gorseller\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

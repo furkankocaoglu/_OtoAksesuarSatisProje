@@ -38,9 +38,11 @@ namespace OtoAksesuarSatis
                 return;
             }
 
+
             using (SqlConnection conn = new SqlConnection(Baglanti.baglantiYolu))
             {
-                string query = "SELECT * FROM AnaBayi WHERE KullaniciAdi = @kullaniciAdi AND Sifre = @sifre AND Durum = 1";
+                string query = "SELECT * FROM AnaBayi WHERE KullaniciAdi = @kullaniciAdi AND Sifre = @sifre AND Durum = 1 AND Silinmis = 0";
+
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 

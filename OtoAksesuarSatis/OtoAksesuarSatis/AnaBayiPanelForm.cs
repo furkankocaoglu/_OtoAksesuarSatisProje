@@ -25,9 +25,9 @@ namespace OtoAksesuarSatis
         private void AnaBayiPanelForm_Load(object sender, EventArgs e)
         {
             ComboBoxDoldur("SELECT KategoriAdi FROM Kategoriler WHERE Silinmis=0 AND Durum=1", comboBox1);
-            ComboBoxDoldur("SELECT BayiTipiAdi FROM BayiTipleri", comboBox3);
+            ComboBoxDoldur("SELECT MarkaAdi FROM Markalar", comboBox2);
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             UrunleriListele();
 
         }
@@ -39,10 +39,10 @@ namespace OtoAksesuarSatis
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(@"
-            SELECT u.UrunID, u.UrunAdi, u.Marka, k.KategoriAdi, u.Fiyat 
-            FROM Urunler u
-            INNER JOIN Kategoriler k ON u.KategoriID = k.KategoriID
-            WHERE u.Silinmis = 0", conn);
+SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, u.BronzFiyat, u.SilverFiyat, u.GoldFiyat 
+FROM Urunler u
+INNER JOIN Kategoriler k ON u.KategoriID = k.KategoriID
+WHERE u.Silinmis = 0", conn);
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -51,9 +51,10 @@ namespace OtoAksesuarSatis
                     {
                         UrunID = Convert.ToInt32(reader["UrunID"]),
                         UrunAdi = reader["UrunAdi"].ToString(),
-                        Marka = reader["Marka"].ToString(),
                         KategoriAdi = reader["KategoriAdi"].ToString(),
-                        Fiyat = Convert.ToDecimal(reader["Fiyat"])
+                        BronzFiyat = Convert.ToDecimal(reader["BronzFiyat"]),
+                        SilverFiyat = Convert.ToDecimal(reader["SilverFiyat"]),
+                        GoldFiyat = Convert.ToDecimal(reader["GoldFiyat"])
                     };
 
                     Liste.Items.Add(urun);
@@ -82,9 +83,9 @@ namespace OtoAksesuarSatis
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text) ||
-                string.IsNullOrWhiteSpace(textBox3.Text) || string.IsNullOrWhiteSpace(comboBox1.Text) ||
-                string.IsNullOrWhiteSpace(comboBox3.Text))
+            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(gold.Text) ||
+        string.IsNullOrWhiteSpace(textBox3.Text) || string.IsNullOrWhiteSpace(comboBox1.Text) ||
+        string.IsNullOrWhiteSpace(comboBox2.Text))
             {
                 MessageBox.Show("Lütfen tüm zorunlu alanları doldurun.");
                 return;
@@ -93,10 +94,11 @@ namespace OtoAksesuarSatis
             try
             {
                 string urunAdi = textBox1.Text;
-                string bayiTipiAdi = comboBox3.Text;
+                string MarkaAdi = comboBox2.Text;
                 string kategoriAdi = comboBox1.Text;
-                string marka = textBox5.Text;
-                decimal fiyat = decimal.Parse(textBox2.Text);
+                decimal bronzfiyat = decimal.Parse(bronz.Text);
+                decimal silverfiyat = decimal.Parse(silver.Text);
+                decimal goldfiyat = decimal.Parse(gold.Text);
                 int stok = int.Parse(textBox3.Text);
                 string aciklama = textBox4.Text;
                 string gorselYolu = pictureBox1.ImageLocation ?? "";
@@ -108,17 +110,21 @@ namespace OtoAksesuarSatis
 
                     try
                     {
+
                         SqlCommand cmd = new SqlCommand(@"
-                    INSERT INTO Urunler (UrunAdi, Marka, KategoriID, Fiyat, StokMiktari, Aciklama, ResimYolu)
-                    VALUES (@UrunAdi, @Marka, 
-                        (SELECT KategoriID FROM Kategoriler WHERE KategoriAdi = @KategoriAdi), 
-                        @Fiyat, @Stok, @Aciklama, @ResimYolu);
-                    SELECT SCOPE_IDENTITY();", conn, tran);
+                INSERT INTO Urunler (UrunAdi, MarkaID, KategoriID, BronzFiyat, SilverFiyat, GoldFiyat, StokMiktari, Aciklama, ResimYolu)
+                VALUES (@UrunAdi, 
+                        (SELECT MarkaID FROM Markalar WHERE MarkaAdi = @MarkaAdi),
+                        (SELECT KategoriID FROM Kategoriler WHERE KategoriAdi = @KategoriAdi),
+                        @BronzFiyat, @SilverFiyat, @GoldFiyat, @Stok, @Aciklama, @ResimYolu);
+                SELECT SCOPE_IDENTITY();", conn, tran);
 
                         cmd.Parameters.Add("@UrunAdi", SqlDbType.NVarChar).Value = urunAdi;
-                        cmd.Parameters.Add("@Marka", SqlDbType.NVarChar).Value = marka;
+                        cmd.Parameters.Add("@MarkaAdi", SqlDbType.NVarChar).Value = MarkaAdi;
                         cmd.Parameters.Add("@KategoriAdi", SqlDbType.NVarChar).Value = kategoriAdi;
-                        cmd.Parameters.Add("@Fiyat", SqlDbType.Decimal).Value = fiyat;
+                        cmd.Parameters.Add("@BronzFiyat", SqlDbType.Decimal).Value = bronzfiyat;
+                        cmd.Parameters.Add("@SilverFiyat", SqlDbType.Decimal).Value = silverfiyat;
+                        cmd.Parameters.Add("@GoldFiyat", SqlDbType.Decimal).Value = goldfiyat;
                         cmd.Parameters.Add("@Stok", SqlDbType.Int).Value = stok;
                         cmd.Parameters.Add("@Aciklama", SqlDbType.NVarChar).Value = aciklama;
                         cmd.Parameters.Add("@ResimYolu", SqlDbType.NVarChar).Value = gorselYolu;
@@ -126,17 +132,6 @@ namespace OtoAksesuarSatis
                         decimal urunIDDecimal = (decimal)cmd.ExecuteScalar();
                         int urunID = Convert.ToInt32(urunIDDecimal);
 
-                        SqlCommand fiyatCmd = new SqlCommand(@"
-                    INSERT INTO BayiFiyatlari (UrunID, BayiTipiID, Fiyat)
-                    VALUES (@UrunID, 
-                        (SELECT BayiTipiID FROM BayiTipleri WHERE BayiTipiAdi = @BayiTipiAdi), 
-                        @Fiyat)", conn, tran);
-
-                        fiyatCmd.Parameters.Add("@UrunID", SqlDbType.Int).Value = urunID;
-                        fiyatCmd.Parameters.Add("@BayiTipiAdi", SqlDbType.NVarChar).Value = bayiTipiAdi;
-                        fiyatCmd.Parameters.Add("@Fiyat", SqlDbType.Decimal).Value = fiyat;
-
-                        fiyatCmd.ExecuteNonQuery();
 
                         tran.Commit();
                         MessageBox.Show("Ürün başarıyla eklendi!");
@@ -175,13 +170,8 @@ namespace OtoAksesuarSatis
                 Directory.CreateDirectory(xmlKlasorYolu);
 
             List<string> bayiTipleri = new List<string> { "Bronz", "Silver", "Gold" };
-            Dictionary<string, decimal> fiyatFarklari = new Dictionary<string, decimal>
-    {
-        { "Bronz", -0.10m }, 
-        { "Silver", 0.00m },  
-        { "Gold", 0.20m }     
-    };
 
+           
             foreach (string bayiTipi in bayiTipleri)
             {
                 using (SqlConnection conn = new SqlConnection(Baglanti.baglantiYolu))
@@ -189,45 +179,64 @@ namespace OtoAksesuarSatis
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(@"
-            SELECT 
-                u.UrunAdi, 
-                u.Marka, 
-                k.KategoriAdi, 
-                bf.Fiyat, 
-                u.StokMiktari, 
-                u.Aciklama, 
-                u.ResimYolu
-            FROM Urunler u
-            JOIN Kategoriler k ON u.KategoriID = k.KategoriID
-            JOIN BayiFiyatlari bf ON u.UrunID = bf.UrunID
-            JOIN BayiTipleri bt ON bf.BayiTipiID = bt.BayiTipiID
-            WHERE bt.BayiTipiAdi = @BayiTipi AND u.UrunID = @UrunID", conn);
+SELECT 
+    u.UrunAdi, 
+    k.KategoriAdi, 
+    u.BronzFiyat, 
+    u.SilverFiyat, 
+    u.GoldFiyat, 
+    u.StokMiktari, 
+    u.Aciklama, 
+    u.ResimYolu
+FROM Urunler u
+JOIN Kategoriler k ON u.KategoriID = k.KategoriID
+WHERE u.UrunID = @UrunID", conn);
 
-                    cmd.Parameters.AddWithValue("@BayiTipi", bayiTipi);
                     cmd.Parameters.AddWithValue("@UrunID", seciliUrun.UrunID);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
-                        decimal baseFiyat = Convert.ToDecimal(reader["Fiyat"]);
-                        decimal bayiFiyat = baseFiyat * (1 + fiyatFarklari[bayiTipi]); 
+                        decimal fiyat = 0;
 
+                        
+                        if (bayiTipi == "Bronz")
+                        {
+                            fiyat = Convert.ToDecimal(reader["BronzFiyat"]);
+                            MessageBox.Show("Bronz Fiyat: " + fiyat.ToString("C2"));
+                        }
+                        else if (bayiTipi == "Silver")
+                        {
+                            fiyat = Convert.ToDecimal(reader["SilverFiyat"]);
+                            MessageBox.Show("Silver Fiyat: " + fiyat.ToString("C2"));
+                        }
+                        else if (bayiTipi == "Gold")
+                        {
+                            fiyat = Convert.ToDecimal(reader["GoldFiyat"]);
+                            MessageBox.Show("Gold Fiyat: " + fiyat.ToString("C2"));
+                        }
+
+                       
                         XElement urunXml = new XElement("urunler",
                             new XElement("urun",
                                 new XElement("UrunAdi", reader["UrunAdi"]),
-                                new XElement("Marka", reader["Marka"]),
                                 new XElement("Kategori", reader["KategoriAdi"]),
-                                new XElement("Fiyat", bayiFiyat.ToString("C2")), 
+                                new XElement("Fiyat", fiyat.ToString("C2")),
                                 new XElement("Stok", reader["StokMiktari"]),
                                 new XElement("Aciklama", reader["Aciklama"]),
                                 new XElement("Resim", reader["ResimYolu"])
                             )
                         );
 
+                       
                         string dosyaAdi = $"{bayiTipi}_{seciliUrun.UrunAdi}.xml";
                         string xmlYolu = Path.Combine(xmlKlasorYolu, dosyaAdi);
                         urunXml.Save(xmlYolu);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ürün verisi alınamadı.");
                     }
 
                     reader.Close();
@@ -245,5 +254,5 @@ namespace OtoAksesuarSatis
             }
         }
     }
-    
+
 }

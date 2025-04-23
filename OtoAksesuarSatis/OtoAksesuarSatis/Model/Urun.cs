@@ -12,11 +12,11 @@ namespace OtoAksesuarSatis.Model
         public string UrunAdi { get; set; }
         public string Marka { get; set; }
         public string KategoriAdi { get; set; }
-        public decimal Fiyat { get; set; }
-
-        public override string ToString()
-        {
-            return $"{UrunAdi} - {Marka} - {KategoriAdi} - {Fiyat:C2}";
-        }
+        public decimal BronzFiyat { get; set; }
+        public decimal SilverFiyat { get; set; }
+        public decimal GoldFiyat { get; set; }
+        public int StokMiktari { get; set; }
+        public string Aciklama { get; set; }
+        public string ResimYolu { get; set; }
     }
 }
