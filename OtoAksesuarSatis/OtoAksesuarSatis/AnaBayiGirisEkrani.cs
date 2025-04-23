@@ -59,7 +59,7 @@ namespace OtoAksesuarSatis
                 if (reader.HasRows)
                 {
                     MessageBox.Show("Giriş başarılı!");
-                    AnaBayiPanelForm panelForm = new AnaBayiPanelForm();
+                    MenuKontrolEkrani panelForm = new MenuKontrolEkrani();
                     panelForm.Show();
                     this.Hide(); 
                 }

@@ -59,21 +59,90 @@
       <DependentUpon>AnaBayiPanelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Baglanti.cs" />
+    <Compile Include="KategoriDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KategoriDuzenle.Designer.cs">
+      <DependentUpon>KategoriDuzenle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KategoriEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KategoriEkle.Designer.cs">
+      <DependentUpon>KategoriEkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KategoriListele.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KategoriListele.Designer.cs">
+      <DependentUpon>KategoriListele.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KategoriSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KategoriSil.Designer.cs">
+      <DependentUpon>KategoriSil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MarkaDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MarkaDuzenle.Designer.cs">
+      <DependentUpon>MarkaDuzenle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MarkaEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MarkaEkle.Designer.cs">
+      <DependentUpon>MarkaEkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MarkaListele.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MarkaListele.Designer.cs">
+      <DependentUpon>MarkaListele.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MarkaSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MarkaSil.Designer.cs">
+      <DependentUpon>MarkaSil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuKontrolEkrani.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuKontrolEkrani.Designer.cs">
+      <DependentUpon>MenuKontrolEkrani.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Kategori.cs" />
     <Compile Include="Model\Urun.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UrunDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UrunDuzenle.Designer.cs">
+      <DependentUpon>UrunDuzenle.cs</DependentUpon>
+    </Compile>
     <Compile Include="UrunIslemleri.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UrunIslemleri.Designer.cs">
       <DependentUpon>UrunIslemleri.cs</DependentUpon>
     </Compile>
+    <Compile Include="UrunSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UrunSil.Designer.cs">
+      <DependentUpon>UrunSil.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AnaBayiGirisEkrani.resx">
       <DependentUpon>AnaBayiGirisEkrani.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AnaBayiPanelForm.resx">
       <DependentUpon>AnaBayiPanelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuKontrolEkrani.resx">
+      <DependentUpon>MenuKontrolEkrani.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

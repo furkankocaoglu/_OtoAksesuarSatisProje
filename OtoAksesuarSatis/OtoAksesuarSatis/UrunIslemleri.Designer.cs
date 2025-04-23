@@ -85,7 +85,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "UrunIslemleri";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UrunIslemleri";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.UrunIslemleri_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
