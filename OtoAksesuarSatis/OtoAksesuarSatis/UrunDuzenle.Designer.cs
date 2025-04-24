@@ -47,9 +47,10 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -69,7 +70,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(79, 84);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(106, 24);
+            this.comboBox1.Size = new System.Drawing.Size(342, 24);
             this.comboBox1.TabIndex = 1;
             // 
             // comboBox2
@@ -77,7 +78,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(79, 121);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(106, 24);
+            this.comboBox2.Size = new System.Drawing.Size(342, 24);
             this.comboBox2.TabIndex = 2;
             // 
             // label2
@@ -156,14 +157,14 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(79, 51);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.Size = new System.Drawing.Size(342, 22);
             this.textBox1.TabIndex = 11;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(79, 152);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(40, 22);
+            this.textBox2.Size = new System.Drawing.Size(60, 22);
             this.textBox2.TabIndex = 12;
             // 
             // textBox3
@@ -199,6 +200,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(79, 236);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(231, 110);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
@@ -225,6 +227,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ürün Düzenle";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(316, 236);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 28);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "Seç";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button1);
@@ -250,15 +262,11 @@
             this.button1.TabIndex = 17;
             this.button1.Text = "Tüm değişiklikleri kaydet";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // openFileDialog1
             // 
-            this.button2.Location = new System.Drawing.Point(316, 236);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 28);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "Seç";
-            this.button2.UseVisualStyleBackColor = true;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // UrunDuzenle
             // 
@@ -303,5 +311,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

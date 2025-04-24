@@ -39,10 +39,10 @@ namespace OtoAksesuarSatis
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(@"
-SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, u.BronzFiyat, u.SilverFiyat, u.GoldFiyat 
-FROM Urunler u
-INNER JOIN Kategoriler k ON u.KategoriID = k.KategoriID
-WHERE u.Silinmis = 0", conn);
+        SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, u.BronzFiyat, u.SilverFiyat, u.GoldFiyat, u.StokMiktari 
+        FROM Urunler u
+        INNER JOIN Kategoriler k ON u.KategoriID = k.KategoriID
+        WHERE u.Silinmis = 0", conn);
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -54,10 +54,21 @@ WHERE u.Silinmis = 0", conn);
                         KategoriAdi = reader["KategoriAdi"].ToString(),
                         BronzFiyat = Convert.ToDecimal(reader["BronzFiyat"]),
                         SilverFiyat = Convert.ToDecimal(reader["SilverFiyat"]),
-                        GoldFiyat = Convert.ToDecimal(reader["GoldFiyat"])
+                        GoldFiyat = Convert.ToDecimal(reader["GoldFiyat"]),
+                        StokMiktari = Convert.ToInt32(reader["StokMiktari"])
                     };
 
-                    Liste.Items.Add(urun);
+                    ListViewItem item = new ListViewItem(urun.UrunAdi);
+                    item.SubItems.Add(urun.KategoriAdi);
+                    item.SubItems.Add(urun.BronzFiyat.ToString("C2"));
+                    item.SubItems.Add(urun.SilverFiyat.ToString("C2"));
+                    item.SubItems.Add(urun.GoldFiyat.ToString("C2"));
+                    item.SubItems.Add(urun.StokMiktari.ToString());
+
+                    
+                    item.Tag = urun;
+
+                    Liste.Items.Add(item);
                 }
             }
         }
@@ -162,8 +173,18 @@ WHERE u.Silinmis = 0", conn);
                 MessageBox.Show("Lütfen bir ürün seçin!");
                 return;
             }
+            DialogResult result = MessageBox.Show("XML dosyasını oluşturmak istediğinize emin misiniz?",
+                                         "Onay",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
 
-            Urun seciliUrun = (Urun)Liste.SelectedItem;
+            if (result == DialogResult.No)
+            {
+                return; 
+            }
+
+            ListViewItem selectedItem = (ListViewItem)Liste.SelectedItem;
+            Urun seciliUrun = (Urun)selectedItem.Tag;
 
             string xmlKlasorYolu = @"C:\BayilikXML\";
             if (!Directory.Exists(xmlKlasorYolu))
@@ -178,19 +199,19 @@ WHERE u.Silinmis = 0", conn);
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(@"
-SELECT 
-    u.UrunID,
-    u.UrunAdi, 
-    k.KategoriAdi, 
-    u.BronzFiyat, 
-    u.SilverFiyat, 
-    u.GoldFiyat, 
-    u.StokMiktari, 
-    u.Aciklama, 
-    u.ResimYolu
-FROM Urunler u
-JOIN Kategoriler k ON u.KategoriID = k.KategoriID
-WHERE u.UrunID = @UrunID", conn);
+            SELECT 
+                u.UrunID,
+                u.UrunAdi, 
+                k.KategoriAdi, 
+                u.BronzFiyat, 
+                u.SilverFiyat, 
+                u.GoldFiyat, 
+                u.StokMiktari, 
+                u.Aciklama, 
+                u.ResimYolu
+            FROM Urunler u
+            JOIN Kategoriler k ON u.KategoriID = k.KategoriID
+            WHERE u.UrunID = @UrunID", conn);
 
                     cmd.Parameters.AddWithValue("@UrunID", seciliUrun.UrunID);
 
@@ -200,7 +221,6 @@ WHERE u.UrunID = @UrunID", conn);
                     {
                         decimal fiyat = 0;
 
-                       
                         if (bayiTipi == "Bronz")
                         {
                             fiyat = Convert.ToDecimal(reader["BronzFiyat"]);
@@ -212,10 +232,6 @@ WHERE u.UrunID = @UrunID", conn);
                         else if (bayiTipi == "Gold")
                         {
                             fiyat = Convert.ToDecimal(reader["GoldFiyat"]);
-                        }
-                        else
-                        {
-                            fiyat = 0; 
                         }
 
                         string dosyaAdi = $"{bayiTipi}.xml";
@@ -230,7 +246,6 @@ WHERE u.UrunID = @UrunID", conn);
 
                         if (mevcutUrun != null)
                         {
-                            
                             bool degisiklikVar = false;
 
                             void Guncelle(string elemanAdi, string yeniDeger)
@@ -258,7 +273,6 @@ WHERE u.UrunID = @UrunID", conn);
                         }
                         else
                         {
-                            
                             XElement yeniUrun = new XElement("urun",
                                 new XElement("UrunID", seciliUrun.UrunID),
                                 new XElement("UrunAdi", reader["UrunAdi"]),
@@ -283,7 +297,7 @@ WHERE u.UrunID = @UrunID", conn);
                 }
             }
 
-            MessageBox.Show("Yeni ürün Eklendi. Mevcut ise tekrar eklenmeyecektir.");
+            MessageBox.Show("Yeni ürün Eklendi. Mevcut özelliklerde ise tekrar eklenmeyecektir.");
         }
 
         private void button3_Click(object sender, EventArgs e)
