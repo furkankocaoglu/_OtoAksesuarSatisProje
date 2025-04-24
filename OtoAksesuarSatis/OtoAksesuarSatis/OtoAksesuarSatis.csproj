@@ -142,11 +142,17 @@
     <EmbeddedResource Include="AnaBayiPanelForm.resx">
       <DependentUpon>AnaBayiPanelForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KategoriDuzenle.resx">
+      <DependentUpon>KategoriDuzenle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KategoriEkle.resx">
       <DependentUpon>KategoriEkle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KategoriListele.resx">
       <DependentUpon>KategoriListele.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MarkaDuzenle.resx">
+      <DependentUpon>MarkaDuzenle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MarkaEkle.resx">
       <DependentUpon>MarkaEkle.cs</DependentUpon>

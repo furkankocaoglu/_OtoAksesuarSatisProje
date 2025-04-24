@@ -61,18 +61,19 @@
             this.duzenleToolStripMenuItem,
             this.sılToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(117, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
             // duzenleToolStripMenuItem
             // 
             this.duzenleToolStripMenuItem.Name = "duzenleToolStripMenuItem";
-            this.duzenleToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.duzenleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.duzenleToolStripMenuItem.Text = "Duzenle";
+            this.duzenleToolStripMenuItem.Click += new System.EventHandler(this.duzenleToolStripMenuItem_Click);
             // 
             // sılToolStripMenuItem
             // 
             this.sılToolStripMenuItem.Name = "sılToolStripMenuItem";
-            this.sılToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.sılToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sılToolStripMenuItem.Text = "Sıl";
             this.sılToolStripMenuItem.Click += new System.EventHandler(this.sılToolStripMenuItem_Click);
             // 

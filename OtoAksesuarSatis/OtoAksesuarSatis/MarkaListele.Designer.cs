@@ -66,8 +66,9 @@
             // duzenleToolStripMenuItem
             // 
             this.duzenleToolStripMenuItem.Name = "duzenleToolStripMenuItem";
-            this.duzenleToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.duzenleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.duzenleToolStripMenuItem.Text = "Duzenle";
+            this.duzenleToolStripMenuItem.Click += new System.EventHandler(this.duzenleToolStripMenuItem_Click);
             // 
             // sılToolStripMenuItem
             // 
@@ -135,8 +136,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Name = "MarkaListele";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MarkaListele";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MarkaListele_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

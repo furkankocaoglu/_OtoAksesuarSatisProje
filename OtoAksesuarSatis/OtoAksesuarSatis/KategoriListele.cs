@@ -71,7 +71,7 @@ namespace OtoAksesuarSatis
                     SqlConnection con = new SqlConnection(@"Data Source=.\SQLEXPRESS; Initial Catalog=OtoAksesuarsatis_db; Integrated Security=True");
                     SqlCommand cmd = con.CreateCommand();
 
-                    // DÜZENLENEN KISIM BURASI:
+                    
                     cmd.CommandText = "UPDATE Kategoriler SET Silinmis = 1, Durum = 0 WHERE KategoriID = @id";
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -90,7 +90,7 @@ namespace OtoAksesuarSatis
                         con.Close();
                     }
 
-                    // Yeniden listele
+                    
                     KategorileriListele();
                 }
             }
@@ -98,18 +98,15 @@ namespace OtoAksesuarSatis
 
         private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            // Sağ tıklama kontrolü
-            if (e.Button == MouseButtons.Right)
-            {
-                // Sağ tıklanan satırın index'ini kaydet
-                rowindex = e.RowIndex;
 
-                // Eğer satır index'i geçerli değilse, menüyü göstermek istemiyoruz
-                if (rowindex >= 0)
-                {
-                    // Sağ tıklama ile ContextMenuStrip'i göster
-                    contextMenuStrip1.Show(dataGridView1, e.Location);
-                }
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
+            {
+                dataGridView1.ClearSelection();
+                dataGridView1.Rows[e.RowIndex].Selected = true;
+                dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[0];
+
+                rowindex = e.RowIndex;
+                contextMenuStrip1.Show(dataGridView1, dataGridView1.PointToClient(Cursor.Position));
             }
         }
 
@@ -121,6 +118,22 @@ namespace OtoAksesuarSatis
         private void button2_Click(object sender, EventArgs e)
         {
             dataGridView2.DataSource = false;
+        }
+
+        private void duzenleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int kategoriID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["KategoriID"].Value);
+            KategoriDuzenle duzenleForm = new KategoriDuzenle(kategoriID);
+
+
+            DialogResult result = duzenleForm.ShowDialog();
+
+
+            if (result == DialogResult.OK)
+            {
+                KategorileriListele();
+            }
+
         }
     }
 }

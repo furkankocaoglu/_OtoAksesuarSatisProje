@@ -44,17 +44,14 @@ namespace OtoAksesuarSatis
 
         private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
             {
+                dataGridView1.ClearSelection();
+                dataGridView1.Rows[e.RowIndex].Selected = true;
+                dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[0];
 
-                rowindex = e.RowIndex;
-
-
-                if (rowindex >= 0)
-                {
-
-                    contextMenuStrip1.Show(dataGridView1, e.Location);
-                }
+                rowindex = e.RowIndex; 
+                contextMenuStrip1.Show(dataGridView1, dataGridView1.PointToClient(Cursor.Position));
             }
         }
 
@@ -69,7 +66,7 @@ namespace OtoAksesuarSatis
                     SqlConnection con = new SqlConnection(@"Data Source=.\SQLEXPRESS; Initial Catalog=OtoAksesuarsatis_db; Integrated Security=True");
                     SqlCommand cmd = con.CreateCommand();
 
-                    // Silinmiş kategoriyi işaretleme
+                    
                     cmd.CommandText = "UPDATE Markalar SET Silinmis = 1, Durum = 0 WHERE MarkaID = @id";
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -117,6 +114,21 @@ namespace OtoAksesuarSatis
         private void button2_Click(object sender, EventArgs e)
         {
             dataGridView2.DataSource = !true;
+        }
+
+        private void duzenleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int markaID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["MarkaID"].Value);
+            MarkaDuzenle duzenleForm = new MarkaDuzenle(markaID);
+
+            
+            DialogResult result = duzenleForm.ShowDialog();
+
+            
+            if (result == DialogResult.OK)
+            {
+                MarkalariListele();
+            }
         }
     }
 }

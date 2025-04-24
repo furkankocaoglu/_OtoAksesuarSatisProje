@@ -80,7 +80,7 @@ namespace OtoAksesuarSatis
 
                 if (reader.Read())
                 {
-                    // Ürün bilgilerini al
+                    
                     textBox1.Text = reader["UrunAdi"].ToString();
                     textBox4.Text = reader["BronzFiyat"].ToString();
                     textBox5.Text = reader["SilverFiyat"].ToString();
