@@ -77,26 +77,26 @@
             // kaydetToolStripMenuItem
             // 
             this.kaydetToolStripMenuItem.Name = "kaydetToolStripMenuItem";
-            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.kaydetToolStripMenuItem.Text = "Ekle";
             this.kaydetToolStripMenuItem.Click += new System.EventHandler(this.kaydetToolStripMenuItem_Click);
             // 
             // silToolStripMenuItem
             // 
             this.silToolStripMenuItem.Name = "silToolStripMenuItem";
-            this.silToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.silToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.silToolStripMenuItem.Text = "Sil";
             // 
             // güncelleToolStripMenuItem
             // 
             this.güncelleToolStripMenuItem.Name = "güncelleToolStripMenuItem";
-            this.güncelleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.güncelleToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.güncelleToolStripMenuItem.Text = "Güncelle";
             // 
             // listeleToolStripMenuItem
             // 
             this.listeleToolStripMenuItem.Name = "listeleToolStripMenuItem";
-            this.listeleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listeleToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.listeleToolStripMenuItem.Text = "Listele";
             this.listeleToolStripMenuItem.Click += new System.EventHandler(this.listeleToolStripMenuItem_Click);
             // 
@@ -114,26 +114,28 @@
             // ekleToolStripMenuItem
             // 
             this.ekleToolStripMenuItem.Name = "ekleToolStripMenuItem";
-            this.ekleToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.ekleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ekleToolStripMenuItem.Text = "Ekle";
+            this.ekleToolStripMenuItem.Click += new System.EventHandler(this.ekleToolStripMenuItem_Click);
             // 
             // silToolStripMenuItem1
             // 
             this.silToolStripMenuItem1.Name = "silToolStripMenuItem1";
-            this.silToolStripMenuItem1.Size = new System.Drawing.Size(120, 22);
+            this.silToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.silToolStripMenuItem1.Text = "Sil";
             // 
             // güncelleToolStripMenuItem1
             // 
             this.güncelleToolStripMenuItem1.Name = "güncelleToolStripMenuItem1";
-            this.güncelleToolStripMenuItem1.Size = new System.Drawing.Size(120, 22);
+            this.güncelleToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.güncelleToolStripMenuItem1.Text = "Güncelle";
             // 
             // listeleToolStripMenuItem1
             // 
             this.listeleToolStripMenuItem1.Name = "listeleToolStripMenuItem1";
-            this.listeleToolStripMenuItem1.Size = new System.Drawing.Size(120, 22);
+            this.listeleToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.listeleToolStripMenuItem1.Text = "Listele";
+            this.listeleToolStripMenuItem1.Click += new System.EventHandler(this.listeleToolStripMenuItem1_Click);
             // 
             // markaİşlemleriToolStripMenuItem
             // 
@@ -149,26 +151,28 @@
             // ekleToolStripMenuItem1
             // 
             this.ekleToolStripMenuItem1.Name = "ekleToolStripMenuItem1";
-            this.ekleToolStripMenuItem1.Size = new System.Drawing.Size(120, 22);
+            this.ekleToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.ekleToolStripMenuItem1.Text = "Ekle";
+            this.ekleToolStripMenuItem1.Click += new System.EventHandler(this.ekleToolStripMenuItem1_Click);
             // 
             // silToolStripMenuItem2
             // 
             this.silToolStripMenuItem2.Name = "silToolStripMenuItem2";
-            this.silToolStripMenuItem2.Size = new System.Drawing.Size(120, 22);
+            this.silToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.silToolStripMenuItem2.Text = "Sil";
             // 
             // güncelleToolStripMenuItem2
             // 
             this.güncelleToolStripMenuItem2.Name = "güncelleToolStripMenuItem2";
-            this.güncelleToolStripMenuItem2.Size = new System.Drawing.Size(120, 22);
+            this.güncelleToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.güncelleToolStripMenuItem2.Text = "Güncelle";
             // 
             // listeleToolStripMenuItem2
             // 
             this.listeleToolStripMenuItem2.Name = "listeleToolStripMenuItem2";
-            this.listeleToolStripMenuItem2.Size = new System.Drawing.Size(120, 22);
+            this.listeleToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.listeleToolStripMenuItem2.Text = "Listele";
+            this.listeleToolStripMenuItem2.Click += new System.EventHandler(this.listeleToolStripMenuItem2_Click);
             // 
             // çıkışYapToolStripMenuItem
             // 

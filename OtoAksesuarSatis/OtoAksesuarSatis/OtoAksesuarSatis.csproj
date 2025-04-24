@@ -114,6 +114,7 @@
       <DependentUpon>MenuKontrolEkrani.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Kategori.cs" />
+    <Compile Include="Model\Marka.cs" />
     <Compile Include="Model\Urun.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +142,18 @@
     <EmbeddedResource Include="AnaBayiPanelForm.resx">
       <DependentUpon>AnaBayiPanelForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KategoriEkle.resx">
+      <DependentUpon>KategoriEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KategoriListele.resx">
+      <DependentUpon>KategoriListele.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MarkaEkle.resx">
+      <DependentUpon>MarkaEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MarkaListele.resx">
+      <DependentUpon>MarkaListele.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuKontrolEkrani.resx">
       <DependentUpon>MenuKontrolEkrani.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +167,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UrunDuzenle.resx">
+      <DependentUpon>UrunDuzenle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UrunIslemleri.resx">
       <DependentUpon>UrunIslemleri.cs</DependentUpon>
     </EmbeddedResource>

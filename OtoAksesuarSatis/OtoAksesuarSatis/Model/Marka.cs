@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace OtoAksesuarSatis.Model
 {
-    public class Kategori
+    public class Marka
     {
-        public int KategoriID { get; set; }
-        public string KategoriAdi { get; set; }
+        public int MarkaID { get; set; }
+        public string MarkaAdi { get; set; }
         public bool Durum { get; set; }
         public bool Silinmis { get; set; }
+       
     }
 }

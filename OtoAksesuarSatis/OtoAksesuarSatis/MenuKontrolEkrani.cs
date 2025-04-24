@@ -33,9 +33,48 @@ namespace OtoAksesuarSatis
 
         private void çıkışYapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide(); // Mevcut (ana) formu gizle
-            AnaBayiGirisEkrani cikisForm = new AnaBayiGirisEkrani();
-            cikisForm.Show(); 
+            DialogResult sonuc = MessageBox.Show(
+        "Çıkış yapmak istediğinize emin misiniz?",
+        "Çıkış Onayı",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question);
+
+            if (sonuc == DialogResult.Yes)
+            {
+                this.Hide(); 
+                AnaBayiGirisEkrani cikisForm = new AnaBayiGirisEkrani();
+                cikisForm.Show();
+            }
         }
+
+        private void ekleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Mevcut (ana) formu gizle
+            KategoriEkle kategoriEkle = new KategoriEkle();
+            kategoriEkle.Show();
+        }
+
+        private void listeleToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Mevcut (ana) formu gizle
+            MarkaListele markaListele = new MarkaListele();
+            markaListele.Show();
+        }
+
+        private void ekleToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Mevcut (ana) formu gizle
+            MarkaEkle markaEkle = new MarkaEkle();
+            markaEkle.Show();
+        }
+
+        private void listeleToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+            KategoriListele kategoriListele = new KategoriListele();
+            kategoriListele.Show();
+        }
+
+
     }
 }

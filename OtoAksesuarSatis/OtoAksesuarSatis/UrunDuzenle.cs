@@ -1,7 +1,9 @@
-﻿using System;
+﻿using OtoAksesuarSatis.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,21 @@ namespace OtoAksesuarSatis
 {
     public partial class UrunDuzenle : Form
     {
-        public UrunDuzenle()
+        private int _urunID;
+        public UrunDuzenle(int id)
         {
             InitializeComponent();
+           
+        }
+
+        private void UrunDuzenle_Load(object sender, EventArgs e)
+        {
+            
+        }
+        private void UrunYukle(int kategoriID)
+        {
+            
         }
     }
 }
+

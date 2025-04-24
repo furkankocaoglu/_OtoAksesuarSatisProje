@@ -23,3 +23,8 @@ C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesu
 C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.exe
 C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.pdb
 C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.MenuKontrolEkrani.resources
+C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.KategoriEkle.resources
+C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.MarkaListele.resources
+C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.MarkaEkle.resources
+C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.KategoriListele.resources
+C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.UrunDuzenle.resources
