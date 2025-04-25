@@ -61,19 +61,19 @@
             this.duzenleToolStripMenuItem,
             this.sılToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(117, 48);
             // 
             // duzenleToolStripMenuItem
             // 
             this.duzenleToolStripMenuItem.Name = "duzenleToolStripMenuItem";
-            this.duzenleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.duzenleToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.duzenleToolStripMenuItem.Text = "Duzenle";
             this.duzenleToolStripMenuItem.Click += new System.EventHandler(this.duzenleToolStripMenuItem_Click);
             // 
             // sılToolStripMenuItem
             // 
             this.sılToolStripMenuItem.Name = "sılToolStripMenuItem";
-            this.sılToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sılToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.sılToolStripMenuItem.Text = "Sıl";
             this.sılToolStripMenuItem.Click += new System.EventHandler(this.sılToolStripMenuItem_Click);
             // 
@@ -136,8 +136,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Name = "KategoriListele";
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "KategoriListele";
             this.Load += new System.EventHandler(this.KategoriListele_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

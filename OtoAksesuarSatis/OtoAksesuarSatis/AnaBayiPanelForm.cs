@@ -94,12 +94,12 @@ namespace OtoAksesuarSatis
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(gold.Text) ||
+            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(bronz.Text) ||
         string.IsNullOrWhiteSpace(textBox3.Text) || string.IsNullOrWhiteSpace(comboBox1.Text) ||
         string.IsNullOrWhiteSpace(comboBox2.Text))
             {
                 MessageBox.Show("Lütfen tüm zorunlu alanları doldurun.");
-                return;
+                return; 
             }
 
             try
@@ -107,9 +107,10 @@ namespace OtoAksesuarSatis
                 string urunAdi = textBox1.Text;
                 string MarkaAdi = comboBox2.Text;
                 string kategoriAdi = comboBox1.Text;
-                decimal bronzfiyat = decimal.Parse(bronz.Text);
-                decimal silverfiyat = decimal.Parse(silver.Text);
-                decimal goldfiyat = decimal.Parse(gold.Text);
+                decimal temelFiyat = decimal.Parse(bronz.Text);
+                decimal bronzFiyat = temelFiyat * 1.05m;
+                decimal silverFiyat = temelFiyat * 1.07m;
+                decimal goldFiyat = temelFiyat * 1.10m;
                 int stok = int.Parse(textBox3.Text);
                 string aciklama = textBox4.Text;
                 string gorselYolu = pictureBox1.ImageLocation ?? "";
@@ -117,42 +118,27 @@ namespace OtoAksesuarSatis
                 using (SqlConnection conn = new SqlConnection(Baglanti.baglantiYolu))
                 {
                     conn.Open();
-                    SqlTransaction tran = conn.BeginTransaction();
 
-                    try
-                    {
+                    SqlCommand cmd = new SqlCommand(@"
+        INSERT INTO Urunler (UrunAdi, MarkaID, KategoriID, BronzFiyat, SilverFiyat, GoldFiyat, StokMiktari, Aciklama, ResimYolu)
+        VALUES (@UrunAdi, 
+                (SELECT MarkaID FROM Markalar WHERE MarkaAdi = @MarkaAdi),
+                (SELECT KategoriID FROM Kategoriler WHERE KategoriAdi = @KategoriAdi),
+                @BronzFiyat, @SilverFiyat, @GoldFiyat, @Stok, @Aciklama, @ResimYolu)", conn);
 
-                        SqlCommand cmd = new SqlCommand(@"
-                INSERT INTO Urunler (UrunAdi, MarkaID, KategoriID, BronzFiyat, SilverFiyat, GoldFiyat, StokMiktari, Aciklama, ResimYolu)
-                VALUES (@UrunAdi, 
-                        (SELECT MarkaID FROM Markalar WHERE MarkaAdi = @MarkaAdi),
-                        (SELECT KategoriID FROM Kategoriler WHERE KategoriAdi = @KategoriAdi),
-                        @BronzFiyat, @SilverFiyat, @GoldFiyat, @Stok, @Aciklama, @ResimYolu);
-                SELECT SCOPE_IDENTITY();", conn, tran);
+                    cmd.Parameters.AddWithValue("@UrunAdi", urunAdi);
+                    cmd.Parameters.AddWithValue("@MarkaAdi", MarkaAdi);
+                    cmd.Parameters.AddWithValue("@KategoriAdi", kategoriAdi);
+                    cmd.Parameters.AddWithValue("@BronzFiyat", bronzFiyat);
+                    cmd.Parameters.AddWithValue("@SilverFiyat", silverFiyat);
+                    cmd.Parameters.AddWithValue("@GoldFiyat", goldFiyat);
+                    cmd.Parameters.AddWithValue("@Stok", stok);
+                    cmd.Parameters.AddWithValue("@Aciklama", aciklama);
+                    cmd.Parameters.AddWithValue("@ResimYolu", gorselYolu);
 
-                        cmd.Parameters.Add("@UrunAdi", SqlDbType.NVarChar).Value = urunAdi;
-                        cmd.Parameters.Add("@MarkaAdi", SqlDbType.NVarChar).Value = MarkaAdi;
-                        cmd.Parameters.Add("@KategoriAdi", SqlDbType.NVarChar).Value = kategoriAdi;
-                        cmd.Parameters.Add("@BronzFiyat", SqlDbType.Decimal).Value = bronzfiyat;
-                        cmd.Parameters.Add("@SilverFiyat", SqlDbType.Decimal).Value = silverfiyat;
-                        cmd.Parameters.Add("@GoldFiyat", SqlDbType.Decimal).Value = goldfiyat;
-                        cmd.Parameters.Add("@Stok", SqlDbType.Int).Value = stok;
-                        cmd.Parameters.Add("@Aciklama", SqlDbType.NVarChar).Value = aciklama;
-                        cmd.Parameters.Add("@ResimYolu", SqlDbType.NVarChar).Value = gorselYolu;
-
-                        decimal urunIDDecimal = (decimal)cmd.ExecuteScalar();
-                        int urunID = Convert.ToInt32(urunIDDecimal);
-
-
-                        tran.Commit();
-                        MessageBox.Show("Ürün başarıyla eklendi!");
-                        UrunleriListele();
-                    }
-                    catch (Exception ex)
-                    {
-                        tran.Rollback();
-                        MessageBox.Show("Hata oluştu: " + ex.Message);
-                    }
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Ürün başarıyla eklendi!");
+                    UrunleriListele();
                 }
             }
             catch (FormatException)
@@ -297,7 +283,7 @@ namespace OtoAksesuarSatis
                 }
             }
 
-            MessageBox.Show("Yeni ürün Eklendi. Mevcut özelliklerde ise tekrar eklenmeyecektir.");
+            MessageBox.Show("Ürün Eklendi. Mevcut özelliklerde ise tekrar eklenmeyecektir.");
         }
 
         private void button3_Click(object sender, EventArgs e)

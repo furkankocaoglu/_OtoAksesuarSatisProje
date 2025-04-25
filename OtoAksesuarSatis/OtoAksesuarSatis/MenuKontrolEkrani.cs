@@ -19,6 +19,7 @@ namespace OtoAksesuarSatis
 
         private void listeleToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             UrunIslemleri listele = new UrunIslemleri();
             listele.MdiParent = this;
             listele.Show();
@@ -49,29 +50,34 @@ namespace OtoAksesuarSatis
 
         private void ekleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide(); // Mevcut (ana) formu gizle
+            
             KategoriEkle kategoriEkle = new KategoriEkle();
+            kategoriEkle.MdiParent = this;
             kategoriEkle.Show();
+            
         }
 
         private void listeleToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            this.Hide(); // Mevcut (ana) formu gizle
+            
             MarkaListele markaListele = new MarkaListele();
+            markaListele.MdiParent = this;
             markaListele.Show();
         }
 
         private void ekleToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            this.Hide(); // Mevcut (ana) formu gizle
+            
             MarkaEkle markaEkle = new MarkaEkle();
+            markaEkle.MdiParent = this;
             markaEkle.Show();
         }
 
         private void listeleToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            
             KategoriListele kategoriListele = new KategoriListele();
+            kategoriListele.MdiParent = this;
             kategoriListele.Show();
         }
 

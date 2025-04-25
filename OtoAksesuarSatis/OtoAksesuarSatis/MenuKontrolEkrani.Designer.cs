@@ -32,18 +32,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.işlemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kaydetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.güncelleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listeleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kategoriİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ekleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.silToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.güncelleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.listeleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.markaİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ekleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.silToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.güncelleToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.listeleToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.çıkışYapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -67,8 +61,6 @@
             // 
             this.işlemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.kaydetToolStripMenuItem,
-            this.silToolStripMenuItem,
-            this.güncelleToolStripMenuItem,
             this.listeleToolStripMenuItem});
             this.işlemToolStripMenuItem.Name = "işlemToolStripMenuItem";
             this.işlemToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
@@ -77,26 +69,14 @@
             // kaydetToolStripMenuItem
             // 
             this.kaydetToolStripMenuItem.Name = "kaydetToolStripMenuItem";
-            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.kaydetToolStripMenuItem.Text = "Ekle";
+            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.kaydetToolStripMenuItem.Text = "Ekle/XML Oluştur";
             this.kaydetToolStripMenuItem.Click += new System.EventHandler(this.kaydetToolStripMenuItem_Click);
-            // 
-            // silToolStripMenuItem
-            // 
-            this.silToolStripMenuItem.Name = "silToolStripMenuItem";
-            this.silToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.silToolStripMenuItem.Text = "Sil";
-            // 
-            // güncelleToolStripMenuItem
-            // 
-            this.güncelleToolStripMenuItem.Name = "güncelleToolStripMenuItem";
-            this.güncelleToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.güncelleToolStripMenuItem.Text = "Güncelle";
             // 
             // listeleToolStripMenuItem
             // 
             this.listeleToolStripMenuItem.Name = "listeleToolStripMenuItem";
-            this.listeleToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.listeleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listeleToolStripMenuItem.Text = "Listele";
             this.listeleToolStripMenuItem.Click += new System.EventHandler(this.listeleToolStripMenuItem_Click);
             // 
@@ -104,8 +84,6 @@
             // 
             this.kategoriİşlemleriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ekleToolStripMenuItem,
-            this.silToolStripMenuItem1,
-            this.güncelleToolStripMenuItem1,
             this.listeleToolStripMenuItem1});
             this.kategoriİşlemleriToolStripMenuItem.Name = "kategoriİşlemleriToolStripMenuItem";
             this.kategoriİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
@@ -118,18 +96,6 @@
             this.ekleToolStripMenuItem.Text = "Ekle";
             this.ekleToolStripMenuItem.Click += new System.EventHandler(this.ekleToolStripMenuItem_Click);
             // 
-            // silToolStripMenuItem1
-            // 
-            this.silToolStripMenuItem1.Name = "silToolStripMenuItem1";
-            this.silToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.silToolStripMenuItem1.Text = "Sil";
-            // 
-            // güncelleToolStripMenuItem1
-            // 
-            this.güncelleToolStripMenuItem1.Name = "güncelleToolStripMenuItem1";
-            this.güncelleToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.güncelleToolStripMenuItem1.Text = "Güncelle";
-            // 
             // listeleToolStripMenuItem1
             // 
             this.listeleToolStripMenuItem1.Name = "listeleToolStripMenuItem1";
@@ -141,8 +107,6 @@
             // 
             this.markaİşlemleriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ekleToolStripMenuItem1,
-            this.silToolStripMenuItem2,
-            this.güncelleToolStripMenuItem2,
             this.listeleToolStripMenuItem2});
             this.markaİşlemleriToolStripMenuItem.Name = "markaİşlemleriToolStripMenuItem";
             this.markaİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
@@ -154,18 +118,6 @@
             this.ekleToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.ekleToolStripMenuItem1.Text = "Ekle";
             this.ekleToolStripMenuItem1.Click += new System.EventHandler(this.ekleToolStripMenuItem1_Click);
-            // 
-            // silToolStripMenuItem2
-            // 
-            this.silToolStripMenuItem2.Name = "silToolStripMenuItem2";
-            this.silToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.silToolStripMenuItem2.Text = "Sil";
-            // 
-            // güncelleToolStripMenuItem2
-            // 
-            this.güncelleToolStripMenuItem2.Name = "güncelleToolStripMenuItem2";
-            this.güncelleToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.güncelleToolStripMenuItem2.Text = "Güncelle";
             // 
             // listeleToolStripMenuItem2
             // 
@@ -190,8 +142,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.menuStrip1);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MenuKontrolEkrani";
@@ -208,19 +162,13 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem işlemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kaydetToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem güncelleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listeleToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem kategoriİşlemleriToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem markaİşlemleriToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ekleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem güncelleToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem listeleToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ekleToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem güncelleToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem listeleToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem çıkışYapToolStripMenuItem;
     }

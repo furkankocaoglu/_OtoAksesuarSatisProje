@@ -77,12 +77,6 @@
     <Compile Include="KategoriListele.Designer.cs">
       <DependentUpon>KategoriListele.cs</DependentUpon>
     </Compile>
-    <Compile Include="KategoriSil.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="KategoriSil.Designer.cs">
-      <DependentUpon>KategoriSil.cs</DependentUpon>
-    </Compile>
     <Compile Include="MarkaDuzenle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,12 +94,6 @@
     </Compile>
     <Compile Include="MarkaListele.Designer.cs">
       <DependentUpon>MarkaListele.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MarkaSil.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MarkaSil.Designer.cs">
-      <DependentUpon>MarkaSil.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuKontrolEkrani.cs">
       <SubType>Form</SubType>
@@ -129,12 +117,6 @@
     </Compile>
     <Compile Include="UrunIslemleri.Designer.cs">
       <DependentUpon>UrunIslemleri.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UrunSil.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UrunSil.Designer.cs">
-      <DependentUpon>UrunSil.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AnaBayiGirisEkrani.resx">
       <DependentUpon>AnaBayiGirisEkrani.cs</DependentUpon>

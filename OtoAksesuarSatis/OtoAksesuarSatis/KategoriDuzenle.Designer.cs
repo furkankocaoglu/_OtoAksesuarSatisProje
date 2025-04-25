@@ -70,6 +70,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "KategoriDuzenle";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KategoriDuzenle";
             this.ResumeLayout(false);
             this.PerformLayout();
