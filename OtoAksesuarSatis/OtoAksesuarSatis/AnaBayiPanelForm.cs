@@ -39,10 +39,7 @@ namespace OtoAksesuarSatis
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(@"
-        SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, u.BronzFiyat, u.SilverFiyat, u.GoldFiyat, u.StokMiktari 
-        FROM Urunler u
-        INNER JOIN Kategoriler k ON u.KategoriID = k.KategoriID
-        WHERE u.Silinmis = 0", conn);
+        SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, u.BronzFiyat, u.SilverFiyat, u.GoldFiyat, u.StokMiktari FROM Urunler u INNER JOIN Kategoriler k ON u.KategoriID = k.KategoriID WHERE u.Silinmis = 0", conn);
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -153,28 +150,24 @@ namespace OtoAksesuarSatis
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             if (Liste.SelectedItem == null)
             {
                 MessageBox.Show("Lütfen bir ürün seçin!");
                 return;
             }
-            DialogResult result = MessageBox.Show("XML dosyasını oluşturmak istediğinize emin misiniz?",
-                                         "Onay",
-                                         MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Question);
+
+            DialogResult result = MessageBox.Show("XML dosyasını oluşturmak istediğinize emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.No)
             {
-                return; 
+                return;
             }
 
             ListViewItem selectedItem = (ListViewItem)Liste.SelectedItem;
             Urun seciliUrun = (Urun)selectedItem.Tag;
 
             string xmlKlasorYolu = @"C:\BayilikXML\";
-            if (!Directory.Exists(xmlKlasorYolu))
-                Directory.CreateDirectory(xmlKlasorYolu);
+            if (!Directory.Exists(xmlKlasorYolu)) Directory.CreateDirectory(xmlKlasorYolu);
 
             List<string> bayiTipleri = new List<string> { "Bronz", "Silver", "Gold" };
 
@@ -185,19 +178,10 @@ namespace OtoAksesuarSatis
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(@"
-            SELECT 
-                u.UrunID,
-                u.UrunAdi, 
-                k.KategoriAdi, 
-                u.BronzFiyat, 
-                u.SilverFiyat, 
-                u.GoldFiyat, 
-                u.StokMiktari, 
-                u.Aciklama, 
-                u.ResimYolu
-            FROM Urunler u
-            JOIN Kategoriler k ON u.KategoriID = k.KategoriID
-            WHERE u.UrunID = @UrunID", conn);
+                SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, u.BronzFiyat, u.SilverFiyat, u.GoldFiyat, u.StokMiktari, u.Aciklama, u.ResimYolu
+                FROM Urunler u
+                JOIN Kategoriler k ON u.KategoriID = k.KategoriID
+                WHERE u.UrunID = @UrunID", conn);
 
                     cmd.Parameters.AddWithValue("@UrunID", seciliUrun.UrunID);
 
@@ -283,7 +267,7 @@ namespace OtoAksesuarSatis
                 }
             }
 
-            MessageBox.Show("Ürün Eklendi. Mevcut özelliklerde ise tekrar eklenmeyecektir.");
+            MessageBox.Show("Ürün Eklendi. Aynı bilgiler üzerinden aynı ürün tekrar eklenemez!");
         }
 
         private void button3_Click(object sender, EventArgs e)
