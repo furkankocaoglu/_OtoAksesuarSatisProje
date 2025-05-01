@@ -135,6 +135,13 @@ namespace OtoAksesuarSatis
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Ürün başarıyla eklendi!");
+                    textBox1.Clear();
+                    bronz.Clear();
+                    textBox3.Clear();
+                    comboBox1.SelectedIndex = -1; 
+                    comboBox2.SelectedIndex = -1; 
+                    textBox4.Clear();
+                    pictureBox1.Image = null; 
                     UrunleriListele();
                 }
             }
