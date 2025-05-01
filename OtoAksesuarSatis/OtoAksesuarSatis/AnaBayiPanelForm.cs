@@ -178,9 +178,12 @@ namespace OtoAksesuarSatis
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(@"
-                SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, u.BronzFiyat, u.SilverFiyat, u.GoldFiyat, u.StokMiktari, u.Aciklama, u.ResimYolu
+                SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, m.MarkaAdi,
+                       u.BronzFiyat, u.SilverFiyat, u.GoldFiyat,
+                       u.StokMiktari, u.Aciklama, u.ResimYolu
                 FROM Urunler u
                 JOIN Kategoriler k ON u.KategoriID = k.KategoriID
+                JOIN Markalar m ON u.MarkaID = m.MarkaID
                 WHERE u.UrunID = @UrunID", conn);
 
                     cmd.Parameters.AddWithValue("@UrunID", seciliUrun.UrunID);
@@ -190,19 +193,9 @@ namespace OtoAksesuarSatis
                     if (reader.Read())
                     {
                         decimal fiyat = 0;
-
-                        if (bayiTipi == "Bronz")
-                        {
-                            fiyat = Convert.ToDecimal(reader["BronzFiyat"]);
-                        }
-                        else if (bayiTipi == "Silver")
-                        {
-                            fiyat = Convert.ToDecimal(reader["SilverFiyat"]);
-                        }
-                        else if (bayiTipi == "Gold")
-                        {
-                            fiyat = Convert.ToDecimal(reader["GoldFiyat"]);
-                        }
+                        if (bayiTipi == "Bronz") fiyat = Convert.ToDecimal(reader["BronzFiyat"]);
+                        else if (bayiTipi == "Silver") fiyat = Convert.ToDecimal(reader["SilverFiyat"]);
+                        else if (bayiTipi == "Gold") fiyat = Convert.ToDecimal(reader["GoldFiyat"]);
 
                         string dosyaAdi = $"{bayiTipi}.xml";
                         string xmlYolu = Path.Combine(xmlKlasorYolu, dosyaAdi);
@@ -230,6 +223,7 @@ namespace OtoAksesuarSatis
 
                             Guncelle("UrunAdi", reader["UrunAdi"].ToString());
                             Guncelle("Kategori", reader["KategoriAdi"].ToString());
+                            Guncelle("Marka", reader["MarkaAdi"].ToString());
                             Guncelle("Fiyat", fiyat.ToString("C2"));
                             Guncelle("Stok", reader["StokMiktari"].ToString());
                             Guncelle("Aciklama", reader["Aciklama"].ToString());
@@ -247,6 +241,7 @@ namespace OtoAksesuarSatis
                                 new XElement("UrunID", seciliUrun.UrunID),
                                 new XElement("UrunAdi", reader["UrunAdi"]),
                                 new XElement("Kategori", reader["KategoriAdi"]),
+                                new XElement("Marka", reader["MarkaAdi"]),
                                 new XElement("Fiyat", fiyat.ToString("C2")),
                                 new XElement("Stok", reader["StokMiktari"]),
                                 new XElement("Aciklama", reader["Aciklama"]),
@@ -267,7 +262,7 @@ namespace OtoAksesuarSatis
                 }
             }
 
-            MessageBox.Show("Ürün Eklendi. Aynı bilgiler üzerinden aynı ürün tekrar eklenemez!");
+            MessageBox.Show("Ürün eklendi. Aynı bilgiler üzerinden tekrar eklenemez!");
         }
 
         private void button3_Click(object sender, EventArgs e)
