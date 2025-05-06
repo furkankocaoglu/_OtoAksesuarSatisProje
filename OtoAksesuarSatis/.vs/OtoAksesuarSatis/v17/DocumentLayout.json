@@ -1,67 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\user\\Documents\\GitHub\\_OtoAksesuarSatisProje\\OtoAksesuarSatis\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{B616B8E6-2A60-4089-87C8-1763C047CEF5}|OtoAksesuarSatis\\OtoAksesuarSatis.csproj|c:\\users\\user\\documents\\github\\_otoaksesuarsatisproje\\otoaksesuarsatis\\otoaksesuarsatis\\anabayipanelform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B616B8E6-2A60-4089-87C8-1763C047CEF5}|OtoAksesuarSatis\\OtoAksesuarSatis.csproj|solutionrelative:otoaksesuarsatis\\anabayipanelform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B616B8E6-2A60-4089-87C8-1763C047CEF5}|OtoAksesuarSatis\\OtoAksesuarSatis.csproj|C:\\Users\\user\\Documents\\GitHub\\_OtoAksesuarSatisProje\\OtoAksesuarSatis\\otoaksesuarsatis\\anabayigirisekrani.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B616B8E6-2A60-4089-87C8-1763C047CEF5}|OtoAksesuarSatis\\OtoAksesuarSatis.csproj|solutionrelative:otoaksesuarsatis\\anabayigirisekrani.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B616B8E6-2A60-4089-87C8-1763C047CEF5}|OtoAksesuarSatis\\OtoAksesuarSatis.csproj|C:\\Users\\user\\Documents\\GitHub\\_OtoAksesuarSatisProje\\OtoAksesuarSatis\\otoaksesuarsatis\\anabayipanelform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B616B8E6-2A60-4089-87C8-1763C047CEF5}|OtoAksesuarSatis\\OtoAksesuarSatis.csproj|solutionrelative:otoaksesuarsatis\\anabayipanelform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 255,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AnaBayiGirisEkrani.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\_OtoAksesuarSatisProje\\OtoAksesuarSatis\\OtoAksesuarSatis\\AnaBayiGirisEkrani.cs",
-              "RelativeDocumentMoniker": "OtoAksesuarSatis\\AnaBayiGirisEkrani.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\_OtoAksesuarSatisProje\\OtoAksesuarSatis\\OtoAksesuarSatis\\AnaBayiGirisEkrani.cs [Design]",
-              "RelativeToolTip": "OtoAksesuarSatis\\AnaBayiGirisEkrani.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T03:40:25.954Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AnaBayiPanelForm.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\_OtoAksesuarSatisProje\\OtoAksesuarSatis\\OtoAksesuarSatis\\AnaBayiPanelForm.cs",
-              "RelativeDocumentMoniker": "OtoAksesuarSatis\\AnaBayiPanelForm.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\_OtoAksesuarSatisProje\\OtoAksesuarSatis\\OtoAksesuarSatis\\AnaBayiPanelForm.cs",
-              "RelativeToolTip": "OtoAksesuarSatis\\AnaBayiPanelForm.cs",
-              "ViewState": "AQIAAH8AAAAAAAAAAADwv5EAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T00:25:37.984Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AnaBayiPanelForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\_OtoAksesuarSatisProje\\OtoAksesuarSatis\\OtoAksesuarSatis\\AnaBayiPanelForm.cs",
-              "RelativeDocumentMoniker": "OtoAksesuarSatis\\AnaBayiPanelForm.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\_OtoAksesuarSatisProje\\OtoAksesuarSatis\\OtoAksesuarSatis\\AnaBayiPanelForm.cs [Design]",
-              "RelativeToolTip": "OtoAksesuarSatis\\AnaBayiPanelForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T00:25:33.067Z"
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

@@ -59,6 +59,12 @@
       <DependentUpon>AnaBayiPanelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Baglanti.cs" />
+    <Compile Include="BayiSegmentKontrol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BayiSegmentKontrol.Designer.cs">
+      <DependentUpon>BayiSegmentKontrol.cs</DependentUpon>
+    </Compile>
     <Compile Include="KategoriDuzenle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AnaBayiPanelForm.resx">
       <DependentUpon>AnaBayiPanelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BayiSegmentKontrol.resx">
+      <DependentUpon>BayiSegmentKontrol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KategoriDuzenle.resx">
       <DependentUpon>KategoriDuzenle.cs</DependentUpon>

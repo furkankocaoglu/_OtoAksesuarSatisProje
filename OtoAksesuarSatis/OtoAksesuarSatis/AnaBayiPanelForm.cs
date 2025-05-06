@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,10 @@ namespace OtoAksesuarSatis
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(@"
-        SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, u.BronzFiyat, u.SilverFiyat, u.GoldFiyat, u.StokMiktari FROM Urunler u INNER JOIN Kategoriler k ON u.KategoriID = k.KategoriID WHERE u.Silinmis = 0", conn);
+            SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, u.BronzFiyat, u.SilverFiyat, u.GoldFiyat, u.StokMiktari 
+            FROM Urunler u 
+            INNER JOIN Kategoriler k ON u.KategoriID = k.KategoriID 
+            WHERE u.Silinmis = 0", conn);
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -62,9 +66,7 @@ namespace OtoAksesuarSatis
                     item.SubItems.Add(urun.GoldFiyat.ToString("C2"));
                     item.SubItems.Add(urun.StokMiktari.ToString());
 
-                    
                     item.Tag = urun;
-
                     Liste.Items.Add(item);
                 }
             }
@@ -90,13 +92,12 @@ namespace OtoAksesuarSatis
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(bronz.Text) ||
-        string.IsNullOrWhiteSpace(textBox3.Text) || string.IsNullOrWhiteSpace(comboBox1.Text) ||
-        string.IsNullOrWhiteSpace(comboBox2.Text))
+                   string.IsNullOrWhiteSpace(textBox3.Text) || string.IsNullOrWhiteSpace(comboBox1.Text) ||
+                   string.IsNullOrWhiteSpace(comboBox2.Text))
             {
                 MessageBox.Show("Lütfen tüm zorunlu alanları doldurun.");
-                return; 
+                return;
             }
 
             try
@@ -115,13 +116,12 @@ namespace OtoAksesuarSatis
                 using (SqlConnection conn = new SqlConnection(Baglanti.baglantiYolu))
                 {
                     conn.Open();
-
                     SqlCommand cmd = new SqlCommand(@"
-        INSERT INTO Urunler (UrunAdi, MarkaID, KategoriID, BronzFiyat, SilverFiyat, GoldFiyat, StokMiktari, Aciklama, ResimYolu)
-        VALUES (@UrunAdi, 
-                (SELECT MarkaID FROM Markalar WHERE MarkaAdi = @MarkaAdi),
-                (SELECT KategoriID FROM Kategoriler WHERE KategoriAdi = @KategoriAdi),
-                @BronzFiyat, @SilverFiyat, @GoldFiyat, @Stok, @Aciklama, @ResimYolu)", conn);
+                INSERT INTO Urunler (UrunAdi, MarkaID, KategoriID, BronzFiyat, SilverFiyat, GoldFiyat, StokMiktari, Aciklama, ResimYolu)
+                VALUES (@UrunAdi, 
+                        (SELECT MarkaID FROM Markalar WHERE MarkaAdi = @MarkaAdi),
+                        (SELECT KategoriID FROM Kategoriler WHERE KategoriAdi = @KategoriAdi),
+                        @BronzFiyat, @SilverFiyat, @GoldFiyat, @Stok, @Aciklama, @ResimYolu)", conn);
 
                     cmd.Parameters.AddWithValue("@UrunAdi", urunAdi);
                     cmd.Parameters.AddWithValue("@MarkaAdi", MarkaAdi);
@@ -138,10 +138,10 @@ namespace OtoAksesuarSatis
                     textBox1.Clear();
                     bronz.Clear();
                     textBox3.Clear();
-                    comboBox1.SelectedIndex = -1; 
-                    comboBox2.SelectedIndex = -1; 
+                    comboBox1.SelectedIndex = -1;
+                    comboBox2.SelectedIndex = -1;
                     textBox4.Clear();
-                    pictureBox1.Image = null; 
+                    pictureBox1.Image = null;
                     UrunleriListele();
                 }
             }
@@ -157,119 +157,100 @@ namespace OtoAksesuarSatis
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (Liste.SelectedItem == null)
+            if (Liste.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Lütfen bir ürün seçin!");
                 return;
             }
 
-            DialogResult result = MessageBox.Show("XML dosyasını oluşturmak istediğinize emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.No)
-            {
-                return;
-            }
-
-            ListViewItem selectedItem = (ListViewItem)Liste.SelectedItem;
+            ListViewItem selectedItem = (ListViewItem)Liste.SelectedItems[0];
             Urun seciliUrun = (Urun)selectedItem.Tag;
 
             string xmlKlasorYolu = @"C:\BayilikXML\";
-            if (!Directory.Exists(xmlKlasorYolu)) Directory.CreateDirectory(xmlKlasorYolu);
+            if (!Directory.Exists(xmlKlasorYolu))
+                Directory.CreateDirectory(xmlKlasorYolu);
 
-            List<string> bayiTipleri = new List<string> { "Bronz", "Silver", "Gold" };
+            string xmlYolu = Path.Combine(xmlKlasorYolu, "Urunler.xml");
 
-            foreach (string bayiTipi in bayiTipleri)
+            using (SqlConnection conn = new SqlConnection(Baglanti.baglantiYolu))
             {
-                using (SqlConnection conn = new SqlConnection(Baglanti.baglantiYolu))
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(@"
+            SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, m.MarkaAdi,
+                   u.BronzFiyat, u.SilverFiyat, u.GoldFiyat,
+                   u.StokMiktari, u.Aciklama, u.ResimYolu
+            FROM Urunler u
+            JOIN Kategoriler k ON u.KategoriID = k.KategoriID
+            JOIN Markalar m ON u.MarkaID = m.MarkaID
+            WHERE u.UrunID = @UrunID", conn);
+
+                cmd.Parameters.AddWithValue("@UrunID", seciliUrun.UrunID);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
                 {
-                    conn.Open();
+                    string urunID = seciliUrun.UrunID.ToString();
+                    string urunAdi = reader["UrunAdi"].ToString();
+                    string kategori = reader["KategoriAdi"].ToString();
+                    string marka = reader["MarkaAdi"].ToString();
+                    string bronz = Convert.ToDecimal(reader["BronzFiyat"]).ToString("F2", CultureInfo.InvariantCulture);
+                    string silver = Convert.ToDecimal(reader["SilverFiyat"]).ToString("F2", CultureInfo.InvariantCulture);
+                    string gold = Convert.ToDecimal(reader["GoldFiyat"]).ToString("F2", CultureInfo.InvariantCulture);
+                    string stok = reader["StokMiktari"].ToString();
+                    string aciklama = reader["Aciklama"].ToString();
+                    string resim = reader["ResimYolu"].ToString();
 
-                    SqlCommand cmd = new SqlCommand(@"
-                SELECT u.UrunID, u.UrunAdi, k.KategoriAdi, m.MarkaAdi,
-                       u.BronzFiyat, u.SilverFiyat, u.GoldFiyat,
-                       u.StokMiktari, u.Aciklama, u.ResimYolu
-                FROM Urunler u
-                JOIN Kategoriler k ON u.KategoriID = k.KategoriID
-                JOIN Markalar m ON u.MarkaID = m.MarkaID
-                WHERE u.UrunID = @UrunID", conn);
+                    XDocument doc = File.Exists(xmlYolu)
+                        ? XDocument.Load(xmlYolu)
+                        : new XDocument(new XElement("urunler"));
 
-                    cmd.Parameters.AddWithValue("@UrunID", seciliUrun.UrunID);
+                    var mevcutUrun = doc.Root.Elements("urun")
+                        .FirstOrDefault(x => x.Element("UrunID")?.Value == urunID);
 
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
+                    if (mevcutUrun != null)
                     {
-                        decimal fiyat = 0;
-                        if (bayiTipi == "Bronz") fiyat = Convert.ToDecimal(reader["BronzFiyat"]);
-                        else if (bayiTipi == "Silver") fiyat = Convert.ToDecimal(reader["SilverFiyat"]);
-                        else if (bayiTipi == "Gold") fiyat = Convert.ToDecimal(reader["GoldFiyat"]);
-
-                        string dosyaAdi = $"{bayiTipi}.xml";
-                        string xmlYolu = Path.Combine(xmlKlasorYolu, dosyaAdi);
-
-                        XDocument doc = File.Exists(xmlYolu)
-                            ? XDocument.Load(xmlYolu)
-                            : new XDocument(new XElement("urunler"));
-
-                        var mevcutUrun = doc.Root.Elements("urun")
-                            .FirstOrDefault(x => x.Element("UrunID")?.Value == seciliUrun.UrunID.ToString());
-
-                        if (mevcutUrun != null)
-                        {
-                            bool degisiklikVar = false;
-
-                            void Guncelle(string elemanAdi, string yeniDeger)
-                            {
-                                var eleman = mevcutUrun.Element(elemanAdi);
-                                if (eleman == null || eleman.Value != yeniDeger)
-                                {
-                                    mevcutUrun.SetElementValue(elemanAdi, yeniDeger);
-                                    degisiklikVar = true;
-                                }
-                            }
-
-                            Guncelle("UrunAdi", reader["UrunAdi"].ToString());
-                            Guncelle("Kategori", reader["KategoriAdi"].ToString());
-                            Guncelle("Marka", reader["MarkaAdi"].ToString());
-                            Guncelle("Fiyat", fiyat.ToString("C2"));
-                            Guncelle("Stok", reader["StokMiktari"].ToString());
-                            Guncelle("Aciklama", reader["Aciklama"].ToString());
-                            Guncelle("Resim", reader["ResimYolu"].ToString());
-
-                            if (degisiklikVar)
-                            {
-                                mevcutUrun.SetElementValue("GuncellenmeZamani", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                                doc.Save(xmlYolu);
-                            }
-                        }
-                        else
-                        {
-                            XElement yeniUrun = new XElement("urun",
-                                new XElement("UrunID", seciliUrun.UrunID),
-                                new XElement("UrunAdi", reader["UrunAdi"]),
-                                new XElement("Kategori", reader["KategoriAdi"]),
-                                new XElement("Marka", reader["MarkaAdi"]),
-                                new XElement("Fiyat", fiyat.ToString("C2")),
-                                new XElement("Stok", reader["StokMiktari"]),
-                                new XElement("Aciklama", reader["Aciklama"]),
-                                new XElement("Resim", reader["ResimYolu"]),
-                                new XElement("EklenmeZamani", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-                            );
-
-                            doc.Root.Add(yeniUrun);
-                            doc.Save(xmlYolu);
-                        }
+                        mevcutUrun.SetElementValue("UrunAdi", urunAdi);
+                        mevcutUrun.SetElementValue("Kategori", kategori);
+                        mevcutUrun.SetElementValue("Marka", marka);
+                        mevcutUrun.SetElementValue("BronzFiyat", bronz);
+                        mevcutUrun.SetElementValue("SilverFiyat", silver);
+                        mevcutUrun.SetElementValue("GoldFiyat", gold);
+                        mevcutUrun.SetElementValue("Stok", stok);
+                        mevcutUrun.SetElementValue("Aciklama", aciklama);
+                        mevcutUrun.SetElementValue("Resim", resim);
+                        mevcutUrun.SetElementValue("GuncellenmeZamani", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                     else
                     {
-                        MessageBox.Show("Ürün verisi alınamadı.");
+                        XElement yeniUrun = new XElement("urun",
+                            new XElement("UrunID", urunID),
+                            new XElement("UrunAdi", urunAdi),
+                            new XElement("Kategori", kategori),
+                            new XElement("Marka", marka),
+                            new XElement("BronzFiyat", bronz),
+                            new XElement("SilverFiyat", silver),
+                            new XElement("GoldFiyat", gold),
+                            new XElement("Stok", stok),
+                            new XElement("Aciklama", aciklama),
+                            new XElement("Resim", resim),
+                            new XElement("EklenmeZamani", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+                        );
+                        doc.Root.Add(yeniUrun);
                     }
 
-                    reader.Close();
+                    doc.Save(xmlYolu);
+                    MessageBox.Show("Ürün XML dosyasına eklendi/güncellendi.");
                 }
+                else
+                {
+                    MessageBox.Show("Ürün verisi alınamadı.");
+                }
+
+                reader.Close();
             }
 
-            MessageBox.Show("Ürün eklendi. Aynı bilgiler üzerinden tekrar eklenemez!");
         }
 
         private void button3_Click(object sender, EventArgs e)

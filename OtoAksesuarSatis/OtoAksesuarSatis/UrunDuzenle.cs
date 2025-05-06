@@ -5,10 +5,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using System.IO;
 
 namespace OtoAksesuarSatis
 {
@@ -118,9 +121,10 @@ namespace OtoAksesuarSatis
             string aciklama = textBox3.Text;
             string yeniResimYolu = pictureBox1.ImageLocation;
             string kullanilacakResimYolu = !string.IsNullOrEmpty(yeniResimYolu)
-    ? yeniResimYolu
-    : (!string.IsNullOrEmpty(mevcutResimYolu) ? mevcutResimYolu : "");
+                ? yeniResimYolu
+                : (!string.IsNullOrEmpty(mevcutResimYolu) ? mevcutResimYolu : "");
 
+            
             using (SqlConnection conn = new SqlConnection(Baglanti.baglantiYolu))
             {
                 conn.Open();
@@ -153,7 +157,52 @@ WHERE UrunID = @UrunID", conn);
                 conn.Close();
             }
 
-            MessageBox.Show("Ürün başarıyla güncellendi!");
+           
+            string xmlYolu = @"C:\BayilikXML\Urunler.xml";
+            XDocument doc = File.Exists(xmlYolu)
+                ? XDocument.Load(xmlYolu)
+                : new XDocument(new XElement("urunler"));
+
+            
+            var mevcutUrun = doc.Root.Elements("urun")
+                .FirstOrDefault(x => x.Element("UrunID")?.Value == urunID.ToString());
+
+            if (mevcutUrun != null)
+            {
+                mevcutUrun.SetElementValue("UrunAdi", urunAdi);
+                mevcutUrun.SetElementValue("Kategori", comboBox2.Text);
+                mevcutUrun.SetElementValue("Marka", comboBox1.Text);
+                mevcutUrun.SetElementValue("BronzFiyat", bronzFiyat.ToString("F2", CultureInfo.InvariantCulture));
+                mevcutUrun.SetElementValue("SilverFiyat", silverFiyat.ToString("F2", CultureInfo.InvariantCulture));
+                mevcutUrun.SetElementValue("GoldFiyat", goldFiyat.ToString("F2", CultureInfo.InvariantCulture));
+                mevcutUrun.SetElementValue("Stok", stokMiktari.ToString());
+                mevcutUrun.SetElementValue("Aciklama", aciklama);
+                mevcutUrun.SetElementValue("Resim", kullanilacakResimYolu);
+                mevcutUrun.SetElementValue("GuncellenmeZamani", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            }
+            else
+            {
+              
+                XElement yeniUrun = new XElement("urun",
+                    new XElement("UrunID", urunID),
+                    new XElement("UrunAdi", urunAdi),
+                    new XElement("Kategori", comboBox2.Text),
+                    new XElement("Marka", comboBox1.Text),
+                    new XElement("BronzFiyat", bronzFiyat.ToString("F2", CultureInfo.InvariantCulture)),
+                    new XElement("SilverFiyat", silverFiyat.ToString("F2", CultureInfo.InvariantCulture)),
+                    new XElement("GoldFiyat", goldFiyat.ToString("F2", CultureInfo.InvariantCulture)),
+                    new XElement("Stok", stokMiktari.ToString()),
+                    new XElement("Aciklama", aciklama),
+                    new XElement("Resim", kullanilacakResimYolu),
+                    new XElement("EklenmeZamani", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+                );
+                doc.Root.Add(yeniUrun);
+            }
+
+            
+            doc.Save(xmlYolu);
+
+            MessageBox.Show("Ürün başarıyla güncellendi ve XML dosyasına yansıdı!");
             this.Close();
         }
 
