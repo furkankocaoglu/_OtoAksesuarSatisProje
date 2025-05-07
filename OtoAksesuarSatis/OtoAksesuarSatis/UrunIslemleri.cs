@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using System.IO;
+
 
 namespace OtoAksesuarSatis
 {
@@ -87,10 +90,10 @@ namespace OtoAksesuarSatis
 
                 if (MessageBox.Show($"{id} id'li ürün silinecektir.\nOnaylıyor musunuz?", "Ürün Sil", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
+                    
                     SqlConnection con = new SqlConnection(@"Data Source=.\SQLEXPRESS; Initial Catalog=OtoAksesuarsatis_db; Integrated Security=True");
                     SqlCommand cmd = con.CreateCommand();
 
-                    
                     cmd.CommandText = "UPDATE Urunler SET Silinmis = 1, AktifMi = 0 WHERE UrunID = @id";
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -99,6 +102,22 @@ namespace OtoAksesuarSatis
                         con.Open();
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Ürün başarıyla silindi.", "Silme İşlemi");
+
+                        
+                        string xmlYolu = @"C:\BayilikXML\Urunler.xml"; 
+
+                        if (File.Exists(xmlYolu))
+                        {
+                            XDocument doc = XDocument.Load(xmlYolu);
+                            var urunElement = doc.Root.Elements("urun")
+                                                      .FirstOrDefault(x => x.Element("UrunID")?.Value == id.ToString());
+
+                            if (urunElement != null)
+                            {
+                                urunElement.Remove();
+                                doc.Save(xmlYolu); 
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -108,6 +127,8 @@ namespace OtoAksesuarSatis
                     {
                         con.Close();
                     }
+
+                    
                     UrunleriYukle();
                 }
             }
