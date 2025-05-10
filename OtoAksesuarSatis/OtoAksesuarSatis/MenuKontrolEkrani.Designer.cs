@@ -41,7 +41,6 @@
             this.listeleToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.çıkışYapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.bayiSegmentKontrolleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,8 +50,7 @@
             this.işlemToolStripMenuItem,
             this.kategoriİşlemleriToolStripMenuItem,
             this.markaİşlemleriToolStripMenuItem,
-            this.çıkışYapToolStripMenuItem,
-            this.bayiSegmentKontrolleriToolStripMenuItem});
+            this.çıkışYapToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -71,14 +69,14 @@
             // kaydetToolStripMenuItem
             // 
             this.kaydetToolStripMenuItem.Name = "kaydetToolStripMenuItem";
-            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.kaydetToolStripMenuItem.Text = "Ekle/XML Oluştur";
             this.kaydetToolStripMenuItem.Click += new System.EventHandler(this.kaydetToolStripMenuItem_Click);
             // 
             // listeleToolStripMenuItem
             // 
             this.listeleToolStripMenuItem.Name = "listeleToolStripMenuItem";
-            this.listeleToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.listeleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listeleToolStripMenuItem.Text = "Listele";
             this.listeleToolStripMenuItem.Click += new System.EventHandler(this.listeleToolStripMenuItem_Click);
             // 
@@ -140,13 +138,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // bayiSegmentKontrolleriToolStripMenuItem
-            // 
-            this.bayiSegmentKontrolleriToolStripMenuItem.Name = "bayiSegmentKontrolleriToolStripMenuItem";
-            this.bayiSegmentKontrolleriToolStripMenuItem.Size = new System.Drawing.Size(149, 20);
-            this.bayiSegmentKontrolleriToolStripMenuItem.Text = "Bayi Segment Kontrolleri";
-            this.bayiSegmentKontrolleriToolStripMenuItem.Click += new System.EventHandler(this.bayiSegmentKontrolleriToolStripMenuItem_Click);
-            // 
             // MenuKontrolEkrani
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,6 +171,5 @@
         private System.Windows.Forms.ToolStripMenuItem ekleToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem listeleToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem çıkışYapToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bayiSegmentKontrolleriToolStripMenuItem;
     }
 }

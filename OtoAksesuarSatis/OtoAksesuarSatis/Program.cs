@@ -16,7 +16,7 @@ namespace OtoAksesuarSatis
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MenuKontrolEkrani());
+            Application.Run(new AnaBayiGirisEkrani());
         }
     }
 }

@@ -201,6 +201,52 @@ namespace OtoAksesuarSatis
                     string stok = reader["StokMiktari"].ToString();
                     string aciklama = reader["Aciklama"].ToString();
                     string resim = reader["ResimYolu"].ToString();
+                    string yeniResimYolu = string.IsNullOrEmpty(resim) ? "ResimYok.png" : Path.GetFileName(resim);
+
+
+                    string hedefResimYolu = Path.Combine(@"C:\Imagess", yeniResimYolu);
+
+                   
+                    if (!Directory.Exists(@"C:\Imagess"))
+                    {
+                        try
+                        {
+                            Directory.CreateDirectory(@"C:\Imagess");
+                            MessageBox.Show("Klasör oluşturuldu: C:\\Imagess");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Klasör oluşturulamadı: " + ex.Message);
+                            return;  
+                        }
+                    }
+
+                   
+                    if (File.Exists(resim))
+                    {
+                        
+                        if (!File.Exists(hedefResimYolu))
+                        {
+                            try
+                            {
+                                
+                                File.Copy(resim, hedefResimYolu);
+                                MessageBox.Show("Resim başarıyla kopyalandı.");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Resim kopyalanamadı: " + ex.Message);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Resim zaten mevcut.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kaynak resim dosyası bulunamadı.");
+                    }
 
                     XDocument doc = File.Exists(xmlYolu)
                         ? XDocument.Load(xmlYolu)
@@ -219,7 +265,7 @@ namespace OtoAksesuarSatis
                         mevcutUrun.SetElementValue("GoldFiyat", gold);
                         mevcutUrun.SetElementValue("Stok", stok);
                         mevcutUrun.SetElementValue("Aciklama", aciklama);
-                        mevcutUrun.SetElementValue("Resim", resim);
+                        mevcutUrun.SetElementValue("Resim", "/Images/" + yeniResimYolu);
                         mevcutUrun.SetElementValue("GuncellenmeZamani", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                     else
@@ -234,7 +280,7 @@ namespace OtoAksesuarSatis
                             new XElement("GoldFiyat", gold),
                             new XElement("Stok", stok),
                             new XElement("Aciklama", aciklama),
-                            new XElement("Resim", resim),
+                            new XElement("Resim", "/Images/" + yeniResimYolu),  
                             new XElement("EklenmeZamani", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
                         );
                         doc.Root.Add(yeniUrun);

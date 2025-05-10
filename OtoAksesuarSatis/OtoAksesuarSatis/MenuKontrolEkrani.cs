@@ -81,11 +81,6 @@ namespace OtoAksesuarSatis
             kategoriListele.Show();
         }
 
-        private void bayiSegmentKontrolleriToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            BayiSegmentKontrol bayiSegmentKontrol = new BayiSegmentKontrol();
-            bayiSegmentKontrol.MdiParent = this;
-            bayiSegmentKontrol.Show();
-        }
+       
     }
 }

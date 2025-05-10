@@ -30,4 +30,3 @@ C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesu
 C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.UrunDuzenle.resources
 C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.MarkaDuzenle.resources
 C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.KategoriDuzenle.resources
-C:\Users\user\Documents\GitHub\_OtoAksesuarSatisProje\OtoAksesuarSatis\OtoAksesuarSatis\obj\Debug\OtoAksesuarSatis.BayiSegmentKontrol.resources
