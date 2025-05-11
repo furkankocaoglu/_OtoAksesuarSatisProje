@@ -29,8 +29,8 @@ GO
 CREATE TABLE Urunler (
     UrunID INT IDENTITY(1,1),
     UrunAdi NVARCHAR(100) NOT NULL,
-    MarkaID INT NOT NULL,  -- FK: Markalar(MarkaID)
-    KategoriID INT NOT NULL,  -- FK: Kategoriler(KategoriID)
+    MarkaID INT NOT NULL,  
+    KategoriID INT NOT NULL,  
     StokMiktari INT,
     Aciklama NVARCHAR(500),
     ResimYolu NVARCHAR(500),
@@ -74,3 +74,7 @@ GO
 INSERT INTO AnaBayi (Isim, Soyisim, KullaniciAdi, Mail, Sifre, Durum, Silinmis)
 VALUES ('Furkan', 'Kocaoğlu', 'admin', 'furkan.kocaoglu@gmail.com', '1234', 1, 0);
 GO
+
+--Bronz giriş => Bronz@gmail.com 12345
+--Silver giriş => Silver@gmail.com 12345
+--Gold giriş => Gold@gmail.com 12345

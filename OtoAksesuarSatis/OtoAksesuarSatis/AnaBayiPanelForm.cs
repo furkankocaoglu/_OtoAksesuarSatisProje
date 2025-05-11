@@ -220,16 +220,13 @@ namespace OtoAksesuarSatis
                             return;  
                         }
                     }
-
-                   
                     if (File.Exists(resim))
                     {
                         
                         if (!File.Exists(hedefResimYolu))
                         {
                             try
-                            {
-                                
+                            {    
                                 File.Copy(resim, hedefResimYolu);
                                 MessageBox.Show("Resim başarıyla kopyalandı.");
                             }
