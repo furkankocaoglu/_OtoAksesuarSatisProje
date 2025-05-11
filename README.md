@@ -1,1 +1,2 @@
 İleri Yazılım WINDOWSFORM E-ticaret sistemi için bitirme projesidir.
+Ana bayi olarak nitelendirdiğimiz satıcı burada mvc projesi için 3 farklı fiyat segmentinde ürünleri alt bayiye gönderiyor. Ana bayi ürünün 3 segmentteki fiyatını değiştirebilir xml çıkarttıktan sornasında satıştan kaldırabilir ve ürün içeriği ile ilgili tüm değişiklikleri mvc projesinde gözükecek şekilde sağlayabilmektedir.  
